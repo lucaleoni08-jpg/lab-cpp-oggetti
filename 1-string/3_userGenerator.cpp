@@ -25,20 +25,35 @@ string minuscolo(string s){
           prima lettera del nome + tutto il cognome (tutto minuscolo)
 */
 string usernameGenerator(string nome, string cognome){
-    return "da implementare";
+   string nomeN= minuscolo(nome);
+    string cognomeN=minuscolo(cognome);
+    string nomeU=nomeN[0] + cognomeN;
+
+    return nomeU;
+
+
 }
 
 /*
     TODO: Implementare la funzione affinchè, a partire da 1 stringa nella forma "Nome Cognome"
           generi in output una stringa contenente uno username utente nella forma:
           prima lettera del nome + tutto il cognome (tutto minuscolo)
-    
+
     Hint: rispetto alla funzione precedente, splittare (spezzare il nome dal cognome, basandosi sullo spazio)
           e ripetere la stessa logica. E' possibile anche evitare di ripetere la logica? Magari chiamando la stessa funzione sopra?
 
 */
 string usernameGenerator(string nomeCognome){
-    return "da implementare";
+  string nomeCognomeN= minuscolo(nomeCognome);
+char primal=nomeCognomeN[0];
+int x = nomeCognomeN.size();
+  int z = nomeCognomeN.find(" ");
+
+  string s = nomeCognomeN.substr((z+1), x);
+
+string nomeU=primal+s;
+  return nomeU;
+
 }
 
 // main con testing
@@ -54,7 +69,7 @@ int main()
 
     string username2 = usernameGenerator(nomeCognome);
 
-    cout << "Primo utente: " << nome << " " << cognome << ". Username: " << username1;
+    cout << "Primo utente: " << nome << " " << cognome << ". Username: " << username1<<endl;
     cout << "Secondo utente: " << nomeCognome << ". Username: " << username2;
 
     return 0;
