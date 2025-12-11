@@ -9,7 +9,8 @@ using namespace std;
 */
 void lunghezzaStringa(string stringa){
 
-    cout << "Da implementare" << endl;
+    int x=stringa.size();
+    cout<<"La lunghezza della stringa e':"<<x<<endl;
 
 }
 
@@ -20,9 +21,15 @@ void lunghezzaStringa(string stringa){
             altrimenti stampare "La parola ciao NON è presente"
 */
 void trovaCiao(string stringa){
+int z = stringa.find("ciao");
+if(z==(-1)){
+    cout<<"La parola ciao non è presente"<<endl;
+}
+else{
 
-    cout << "Da implementare" << endl;
-    
+     cout<<"La parola ciao è presente all'indice "<<z<<endl;
+}
+
 }
 
 
@@ -31,9 +38,23 @@ void trovaCiao(string stringa){
     TODO: sostituire la parola "pizza" con la parola "pasta" e stampare la nuova stringa
 */
 void sostituisciPizzaConPasta(string stringa){
-    
-    cout << "Da implementare" << endl;
-    
+int x=stringa.size();
+    cout<<"La lunghezza della stringa e':"<<x<<endl;
+
+    int z = stringa.find("pizza");
+    if(z==(-1)){
+    cout<<"La parola pizza non è presente all'interno della stringa"<<endl;
+    }
+    else{
+     cout << "Stringa prima del replace: " << stringa << endl;
+        stringa.replace(z, 5, "pasta");
+    cout << "Stringa dopo replace: " << stringa << endl;
+    cout<< endl;
+
+    }
+
+
+
 }
 
 
@@ -44,10 +65,10 @@ void sostituisciPizzaConPasta(string stringa){
     HINT: la prima parola termina al primo spazio (trovabile con find())
 */
 void stampaPrimaParola(string stringa){
-    // TODO
-
-    cout << "Da implementare" << endl;
-    
+int z = stringa.find(" ");
+stringa = stringa.substr(0, z);
+    cout << "La prima parola e' : " << stringa << endl;
+    cout << endl;
 }
 
 
@@ -57,8 +78,11 @@ void stampaPrimaParola(string stringa){
 */
 void aggiungiGiovanni(string frase){
 
-    cout << "Da implementare" << endl;
-    
+int x=frase.size();
+
+ frase.insert(x, " Giovanni");
+    cout << "Stringa dopo insert: " << frase << endl;
+    cout<< endl;
 }
 
 int main()
@@ -71,11 +95,11 @@ int main()
 
 
     lunghezzaStringa(str);
-    //trovaCiao(str);
-    //sostituisciPizzaConPasta(str);
-    //stampaPrimaParola(str);
-    //aggiungiGiovanni(str);
-    
+    trovaCiao(str);
+    sostituisciPizzaConPasta(str);
+    stampaPrimaParola(str);
+    aggiungiGiovanni(str);
+
 
 
     return 0;
