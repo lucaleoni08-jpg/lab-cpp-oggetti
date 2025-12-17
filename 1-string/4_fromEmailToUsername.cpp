@@ -3,10 +3,8 @@
 #include <cctype>   // per toupper
 using namespace std;
 
- // numero di email
 const int N = 12;
 
-// array di email
 string emails[N] = {
     "marco.rossi@studio.alberghetti.it",
     "anna.bianchi@studio.alberghetti.it",
@@ -20,42 +18,58 @@ string emails[N] = {
     "elena.sartori@studio.alberghetti.it",
     "gianluca.marini@studio.alberghetti.it",
     "marta.leone@studio.alberghetti.it"
-    };
+};
 
+string minuscolo(string s){
+    for(int i = 0; i < s.length(); i++)
+        s.at(i) = tolower(s.at(i));
+    return s;
+}
 
-/*
-    TODO: la seguente funzione prende in input una string s minuscola e modifica il primo carattere rendendolo maiuscolo.
-    Esempio: "marco" -> "Marco", "rossi" -> "Rossi"
-
-    Hint: usare la funzione toupper(), vedi funzione minuscolo() in esercizio 3_userGenerator.cpp
-
-*/
 string primoCarattereMaiuscolo(string &s) {
+    if (s.length() > 0)
+        s[0] = toupper(s[0]);
+    return s;
+}
 
+void toglidopoChiocciola(string email[], int N)
+{
+    for (int i = 0; i < N; i++){
+        int x = emails[i].find("@");
+        int m = emails[i].size();
+
+        emails[i].erase(x, m);
+
+        int h = emails[i].find(".");
+        string s = emails[i].substr(h);
+        emails[i].erase(h);
+
+        emails[i].insert(h, " " + s.substr(1));
+    }
 }
 
 int main() {
 
-    // array destinazione per "Nome Cognome"
     string nomiCognomi[N];
 
 
+    toglidopoChiocciola(emails, N);
 
-    // ciclo su tutte le email
     for (int i = 0; i < N; i++) {
-        string email = emails[i]; //email corrente
 
-        //TODO: rimuovere la parte dopo la chiocciola
+        string email = emails[i];
 
-        // TODO: spezzare la stringa in due parti diverse: nome e cognome (utilizzare il punto come criterio per separare)
+        int posSpazio = email.find(" ");
 
-        // TODO: rendere maiuscolo il primo carattere di nome e cognome (usare la funzione primoCarattereMaiuscolo)
+        string nome = email.substr(0, posSpazio);
+        string cognome = email.substr(posSpazio + 1);
 
-        // TODO: inserire in nomiCognomi[i] l'insieme delle due stringhe (concatenarle con l'operatore +)
-        
+        primoCarattereMaiuscolo(nome);
+        primoCarattereMaiuscolo(cognome);
+
+        nomiCognomi[i] = nome + " " + cognome;
     }
 
-    // stampa il risultato
     cout << "Risultato:\n";
     for (int i = 0; i < N; i++) {
         cout << nomiCognomi[i] << endl;
