@@ -1,0 +1,91 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Data{
+private:
+
+    int giorno;
+    int mese;
+    int anno;
+
+
+public:
+
+
+
+    void setGiorno(int g){
+    if(g>1 && g<31){
+        giorno=g;
+    }else{
+        cout<<"giorno incorretto"<<endl;
+}
+    }
+
+    void setmese(int m){
+    if(m<0 && m<13){
+
+        mese=m;
+    }else{
+    cout<<"mese incorretto"<<endl;
+    }
+    }
+    void setAnno(int a){
+    if(a<2026 && a>1){
+        anno=a;
+    }else{
+        cout<<"anno incorretto"<<endl;
+    }
+
+    }
+
+    int getGiorno(){
+    return giorno;
+    }
+    int getMese(){
+    return mese;
+    }
+    int getAnno(){
+    return anno;
+    }
+   Data(){
+
+   giorno=1;
+   mese=1;
+   anno=1980;
+   }
+   Data(int g,int m, int a){
+
+   giorno=g;
+   mese=m;
+   anno=a;
+   }
+void stampaD(){
+
+cout << giorno << "/" << mese << "/" << anno << endl;
+}
+
+};
+
+
+
+int main()
+{
+int g, m, a;
+    Data d;
+    Data v;
+
+    cout << "INSERIMENTO DATA" << endl;
+
+    cout << "Inserisci giorno" << endl;
+        cin>>g;
+
+    cout << "Inserisci mese" << endl;
+        cin>>m;
+
+    cout << "Inserisci anno" << endl;
+        cin>>a;
+
+    return 0;
+}
