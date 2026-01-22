@@ -1,0 +1,62 @@
+#include <iostream>
+
+using namespace std;
+
+class Portafoglio {
+
+
+public:
+
+
+    float valore;
+
+    Portafoglio(){
+    valore=3.00;
+    }
+
+   Portafoglio(float a){
+
+    valore=a;
+    }
+
+    void stampa(){
+
+    cout<<valore<<endl;
+    }
+    float aggiorna(float V, char s){
+
+    if(s=='+'){
+       return valore+V;
+    }else{
+
+    return valore-V;
+    }
+    }
+};
+
+
+int main()
+{
+    char s;
+    float v;
+    Portafoglio x;
+    x.stampa();
+
+    Portafoglio p(500);
+    p.stampa();
+do{
+    cout<<"vuoi aggiornare il tuo portafoglio(+/-)"<<endl;
+    cin>>s;
+}while(s!='+' && s!='-');
+
+    if(s=='+'){
+    cout<<"Quanto vuoi aggiungere al tuo portafoglio"<<endl;
+    cin>>v;
+    }else{
+    cout<<"Di quanto vuoi diminuire il tuo portafoglio"<<endl;
+    cin>>v;
+    }
+    cout<<p.aggiorna(v,s)<<endl;
+    return 0;
+
+}
