@@ -2,90 +2,142 @@
 #include <string>
 using namespace std;
 
-
-class Data{
+class Data {
 private:
 
-    int giorno;
-    int mese;
-    int anno;
+int giorno;
+int mese;
+int anno;
+
 
 
 public:
 
-
-
-    void setGiorno(int g){
-    if(g>1 && g<31){
-        giorno=g;
-    }else{
-        cout<<"giorno incorretto"<<endl;
-}
+     bool bisestile(int a) {
+        return (a % 400 ==0) || (a % 4 ==0 && a % 100 !=0);
     }
 
-    void setmese(int m){
-    if(m<0 && m<13){
+    bool dataValida(int g, int m, int a) {
+        if (m <1 || m>12)
+            return false;
 
-        mese=m;
-    }else{
-    cout<<"mese incorretto"<<endl;
+        if (a<1 && a<2026)
+            return false;
+
+        int giorniMese[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        if (m == 2 && bisestile(a))
+            giorniMese[1] = 29;
+
+        if (g < 1 || g > giorniMese[m-1])
+            return false;
+
+        return true;
     }
-    }
-    void setAnno(int a){
-    if(a<2026 && a>1){
-        anno=a;
-    }else{
-        cout<<"anno incorretto"<<endl;
+        Data() {
+        giorno = 1;
+        mese = 1;
+        anno = 1980;
     }
 
+Data(int g, int m, int a) {
+        if (dataValida(g, m, a)) {
+            giorno = g;
+            mese = m;
+            anno = a;
+        }
     }
 
-    int getGiorno(){
-    return giorno;
+void setGiorno(int g) {
+    if (dataValida(g, mese, anno))
+            giorno = g;
+        else
+            cout << "Giorno non valido, reinserisci"<<endl;
     }
-    int getMese(){
-    return mese;
+
+void setMese(int m) {
+if (dataValida(giorno, m, anno))
+            mese = m;
+    else
+            cout << "Mese non valido, reinserisci."<<endl;
     }
-    int getAnno(){
-    return anno;
+
+void setAnno(int a) {
+    if (dataValida(giorno, mese, a))
+            anno = a;
+    else
+            cout << "Anno non valido, reinserisci"<<endl;
     }
-   Data(){
 
-   giorno=1;
-   mese=1;
-   anno=1980;
-   }
-   Data(int g,int m, int a){
+int getGiorno() {
+        return giorno;
+        }
+int getMese() {
+        return mese;
+        }
+int getAnno() {
+        return anno;
+        }
 
-   giorno=g;
-   mese=m;
-   anno=a;
-   }
-void stampaD(){
+void stampaNumerica() {
+        cout << giorno << "/" << mese << "/" << anno << endl;
+    }
 
-cout << giorno << "/" << mese << "/" << anno << endl;
-}
-
+void stampaTestuale() {
+        string mesi[] = {"gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
+                         "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"};
+        cout << giorno << " " << mesi[mese-1] << " " << anno << endl;
+    }
 };
 
-
-
-int main()
-{
-int g, m, a;
+int main() {
     Data d;
-    Data v;
+    string risp;
+    int valore;
+    int formato;
 
-    cout << "INSERIMENTO DATA" << endl;
+    cout << "Vuoi inserire una data? (si/no): ";
+    cin >> risp;
 
-    cout << "Inserisci giorno" << endl;
-        cin>>g;
+    if (risp == "si" || risp == "SI" || risp == "Si") {
 
-    cout << "Inserisci mese" << endl;
-        cin>>m;
 
-    cout << "Inserisci anno" << endl;
-        cin>>a;
+        do {
+            cout << "Inserisci giorno: ";
+            cin >> valore;
+            d.setGiorno(valore);
+        } while (d.getGiorno() != valore);
 
+
+        do {
+            cout << "Inserisci mese: ";
+            cin >> valore;
+            d.setMese(valore);
+        } while (d.getMese() != valore);
+
+
+        do {
+            cout << "Inserisci anno: ";
+            cin >> valore;
+            d.setAnno(valore);
+        } while (d.getAnno() != valore);
+    }
+
+    cout << "Formato:"<<endl;
+    cout << "1) gg/mm/aaaa"<<endl;
+    cout << "2) gg mese aaaa"<<endl;
+    cin >> formato;
+
+    cout << "Data: "<<endl;
+    if (formato ==1){
+        d.stampaNumerica();
+        }
+    else if (formato ==2){
+        d.stampaTestuale();
+        }
+    else{
+        cout << "Formato non valido"<<endl;
+}
     return 0;
 }
+
